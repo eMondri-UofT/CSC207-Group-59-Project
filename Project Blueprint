@@ -30,6 +30,7 @@ Character (interface)
 - level [int]
 - attributes [ArrayList<String, int>]
 - inventory [Map<String, Item>]
+
 Classes (extend Character)
 - learned_skills / learned_spells [ArrayList<String, Skill> / ArrayList<String, Spell>]
 - specialties [List<String>]
