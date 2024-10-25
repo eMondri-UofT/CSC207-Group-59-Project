@@ -35,9 +35,9 @@ Classes (extend Character)
 - specialties [List<String>]
 
 Monster
-- name
-- atributes [ArrayList<String, int>]     <- possibly just hit points [int]
-- level [int]     <- possibly unecessary depending on implementation
+- name [String]
+- attributes [ArrayList<String, int>]     <- possibly just hit points [int]
+- level [int]     <- possibly unnecessary depending on implementation
 - attacks [List<Skill> / List<Spell>]
 - drop_table [Map<String, Item>]
 Boss_Monster (extends Monster)
