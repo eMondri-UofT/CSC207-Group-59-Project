@@ -1,10 +1,5 @@
-package Entitiy_Test;
+package entity;
 
-
-import entity.Item;
-import entity.Armor;
-import entity.Buff;
-import entity.Weapon;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

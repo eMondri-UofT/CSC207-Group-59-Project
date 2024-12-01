@@ -12,7 +12,7 @@ public class Weapon extends Item {
     }
 
     public void applyEffect(Player player) {
-        player.increaseAttack(attackBoost);
+        player.increaseDamage(attackBoost);
     }
 
     public int getAttackBoost() {

@@ -23,8 +23,6 @@ public class Player {
 
     private int health;
     private int maxHealth;
-    private int armor;
-    private int attackPower;
     private int healthRegeneration;
 
 
@@ -32,8 +30,6 @@ public class Player {
         this.inventory = new Inventory();     //assume Base information for all race, add value if race changed.
         this.health = 100;
         this.maxHealth = 100;
-        this.armor = 0;
-        this.attackPower = 10;
         this.healthRegeneration = 0;
         this.equippedItems = new HashMap<>();
         this.equippedItems.put("Armor", null);
@@ -90,28 +86,6 @@ public class Player {
     public void increaseHealthLimit(int amount) {
         this.maxHealth += amount;
         System.out.println("Max health increased by " + amount + ". New max health: " + maxHealth);
-    }
-
-    /**
-     * Getter and setter for defense.
-     */
-    public int getArmor() {
-        return armor;
-    }
-    public void increaseArmor(int amount) {
-        this.armor += amount;
-        System.out.println("Defense increased by " + amount + ". New defense: " + armor);
-    }
-
-    /**
-     * Getter and setter for attack power.
-     */
-    public int getAttackPower() {
-        return attackPower;
-    }
-    public void increaseAttack(int amount) {
-        this.attackPower += amount;
-        System.out.println("Attack power increased by " + amount + ". New attack power: " + attackPower);
     }
 
     /**
@@ -231,7 +205,11 @@ public class Player {
     public int getClassArmor() {
         return classArmor;
     }
-    public void setClassArmor(int classArmor) { this.classArmor = classArmor; this.setTotalArmor(); }
+    public void setClassArmor(int classArmor) {
+        this.setTotalArmor(this.getTotalArmor() - this.getClassArmor());
+        this.classArmor = classArmor;
+        this.setTotalArmor(this.getTotalArmor() + classArmor);
+    }
 
     /**
      * Getter and setter for classDamage.
@@ -239,29 +217,55 @@ public class Player {
     public int getClassDamage() {
         return classDamage;
     }
-    public void setClassDamage(int classDamage) { this.classDamage = classDamage; this.setTotalDamage(); }
+    public void setClassDamage(int classDamage) {
+        this.setTotalDamage(this.getTotalDamage() - this.getClassDamage());
+        this.classDamage = classDamage;
+        this.setTotalDamage(this.getTotalDamage() + classDamage);
+    }
 
     /**
      * Getter and setter for raceArmor.
      */
     public int getRaceArmor() { return raceArmor; }
-    public void setRaceArmor(int raceArmor) { this.raceArmor = raceArmor; this.setTotalArmor(); }
+    public void setRaceArmor(int raceArmor) {
+        this.setTotalArmor(this.getTotalArmor() - this.getRaceArmor());
+        this.raceArmor = raceArmor;
+        this.setTotalArmor(this.getTotalArmor() + raceArmor);
+    }
 
     /**
      * Getter and setter for raceDamage.
      */
     public int getRaceDamage() { return raceDamage; }
-    public void setRaceDamage(int raceDamage) { this.raceDamage = raceDamage; this.setTotalDamage(); }
+    public void setRaceDamage(int raceDamage) {
+        this.setTotalDamage(this.getTotalDamage() - this.getRaceDamage());
+        this.raceDamage = raceDamage;
+        this.setTotalDamage(this.getTotalDamage() + raceDamage);
+    }
 
     /**
      * Getter and setter for totalArmor.
      */
     public int getTotalArmor() { return totalArmor; }
-    public void setTotalArmor() { totalArmor = classArmor + raceArmor; }
+    public void setTotalArmor(int totalArmor) { this.totalArmor = totalArmor; }
 
     /**
      * Getter and setter for totalDamage.
      */
     public int getTotalDamage() { return totalDamage; }
-    public void setTotalDamage() { totalDamage = classDamage + raceDamage; }
+    public void setTotalDamage(int totalDamage) { this.totalDamage = totalDamage; }
+
+    /**
+     * Increasers for Armor/Damage
+     * @param amount how much armor/damage has increased by
+     */
+    public void increaseArmor(int amount) {
+        this.setTotalArmor(this.getTotalArmor() + amount);
+        System.out.println("Defense increased by " + amount + ". New defense: " + this.getTotalArmor());
+    }
+
+    public void increaseDamage(int amount) {
+        this.setTotalDamage(this.getTotalDamage() + amount);
+        System.out.println("Attack power increased by " + amount + ". New attack power: " + this.getTotalDamage());
+    }
 }

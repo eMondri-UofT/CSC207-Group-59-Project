@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class PlayerDataAccessObject implements CharacterCreationDataAccessInterface {
-    private Player player = new Player();
+    private Player player = Player.getInstance();
 
     /**
      * Setters
@@ -32,6 +32,10 @@ public class PlayerDataAccessObject implements CharacterCreationDataAccessInterf
     public String getPrace() {
         return player.getPrace();
     }
+    public Player getInstance() {
+        return player;
+    }
+    public int getRoomNumber() { return player.getCurrentRoom().getRoomNumber(); }
 
     /**
      * Description Creators, accessing and analysing API data.

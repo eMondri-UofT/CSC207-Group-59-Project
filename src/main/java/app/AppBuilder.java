@@ -264,7 +264,7 @@ public class AppBuilder {
      */
     public AppBuilder addCharacterCreationUseCase() {
         final CharacterCreationOutputBoundary characterCreationOutputBoundary = new CharacterCreationPresenter(
-                viewManagerModel, characterCreationViewModel);
+                viewManagerModel, characterCreationViewModel, roomDefaultViewModel);
 
         final CharacterCreationInputBoundary characterCreationInteractor =
                 new CharacterCreationInteractor(playerDataAccessObject, characterCreationOutputBoundary);
@@ -374,7 +374,7 @@ public class AppBuilder {
         cardPanel.setPreferredSize(new Dimension(400, 200));
         application.add(cardPanel);
 
-        viewManagerModel.setState(equipItemView.getViewName());
+        viewManagerModel.setState(characterCreationView.getViewName());
         viewManagerModel.firePropertyChanged();
 
         return application;
