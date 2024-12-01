@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test suite for the Player class.
  */
-public class Player_Test {
+class PlayerTest {
 
     private Player player;
 
