@@ -22,4 +22,9 @@ public class MerchantController {
         final MerchantInputData merchantInputData = new MerchantInputData(items);
         merchantUseCaseInteractor.execute(merchantInputData);
     }
+
+    public void buy(String itemName) {
+        MerchantInputData inputData = new MerchantInputData(itemName);
+        merchantUseCaseInteractor.buy(inputData);
+    }
 }

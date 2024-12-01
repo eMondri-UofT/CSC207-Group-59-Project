@@ -15,4 +15,8 @@ public class MerchantState {
 
     public Map<String, List<Item>> getItems() {return items;}
 
+    public void buy() {
+
+    }
+
 }

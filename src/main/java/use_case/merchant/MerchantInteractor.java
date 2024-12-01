@@ -23,4 +23,9 @@ public class MerchantInteractor implements MerchantInputBoundary {
     public void execute(MerchantInputData merchantInputData) {
         // not implemented yet
     }
+
+    @Override
+    public void buy(MerchantInputData merchantInputData) {
+
+    }
 }
