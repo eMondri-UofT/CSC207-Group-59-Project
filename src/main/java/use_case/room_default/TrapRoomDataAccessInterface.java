@@ -1,11 +1,11 @@
-package use_case.fall_for_trap;
+package use_case.room_default;
 
 import entity.Trap;
 
 /**
- * DAO for the Fall For Trap Use Case.
+ * Interface for accessing data related to traps in trap rooms.
  */
-public interface FallForTrapDataAccessInterface {
+public interface TrapRoomDataAccessInterface {
 
     /**
      * Returns the current trap.
@@ -27,14 +27,13 @@ public interface FallForTrapDataAccessInterface {
     void setCurrentTrapName(String name);
 
     /**
-     * Generates a random trap.
-     *
-     * @return a randomly generated trap
+     * Generates and retrieves a random trap from the data source.
+     * @return a randomly selected {@link Trap} object, or {@code null} if no traps are available
      */
     Trap generateRandomTrap();
 
     /**
-     * Loads all traps into the system.
+     * Loads trap data into the data source, typically for initialization purposes.
      */
     void loadTraps();
 }

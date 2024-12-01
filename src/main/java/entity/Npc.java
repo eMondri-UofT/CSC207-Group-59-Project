@@ -11,15 +11,12 @@ public class Npc {
     private List<String> dialogue;
     private int currentDialogueIndex;
 
-
     public Npc(String name, String description, List<String> dialogue) {
         this.name = name;
         this.description = description;
         this.dialogue = dialogue;
         this.setCurrentDialogueIndex(0);
     }
-
-    public Npc() {}
 
     public String getName() {
         return name;
@@ -57,16 +54,27 @@ public class Npc {
         return dialogue.get(currentDialogueIndex);
     }
 
+    /**
+     * Checks if the NPC has next dialogue.
+     * @return true if there is next dialogue, false otherwise
+     */
     public boolean hasNextDialogue() {
         return currentDialogueIndex < dialogue.size() - 1;
     }
 
+    /**
+     * Moves to the next dialogue in the list if available.
+     */
     public void moveToNextDialogue() {
         if (hasNextDialogue()) {
             currentDialogueIndex++;
         }
     }
 
+    /**
+     * Checks if the NPC is a merchant.
+     * @return false by default, true if npc is an instance of merchant
+     */
     public boolean isMerchant() {
         return false;
     }

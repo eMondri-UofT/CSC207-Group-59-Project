@@ -1,6 +1,6 @@
 package entity;
 
-public class MerchantRoom extends Room {
+public class MerchantRoom extends AbstractRoom {
     private Merchant merchant;
 
 

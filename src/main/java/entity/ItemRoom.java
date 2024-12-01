@@ -1,6 +1,6 @@
 package entity;
 
-public class ItemRoom extends Room {
+public class ItemRoom extends AbstractRoom {
     private final Item item;
 
     public ItemRoom(int roomNumber, Item item) {
@@ -10,7 +10,7 @@ public class ItemRoom extends Room {
 
     @Override
     public String getDescription() {
-        return "Room " + getRoomNumber() + ": This room contains an item: " + item.getName();
+        return "Room " + getRoomNumber() + ": This room contains an item [" + item.getName() + "]";
     }
 
     @Override

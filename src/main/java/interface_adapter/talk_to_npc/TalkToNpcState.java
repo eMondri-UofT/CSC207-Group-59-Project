@@ -49,19 +49,23 @@ public class TalkToNpcState {
         return dialogue.get(currentDialogueIndex);
     }
 
+    /**
+     * Checks if the NPC has next dialogue.
+     * @return true if the NPC has next dialogue, false otherwise.
+     */
     public boolean hasNextDialogue() {
         return currentDialogueIndex < dialogue.size() - 1;
     }
 
-    public void setNextDialogue(boolean hasNextDialogue) {
-        this.hasNextDialogue = hasNextDialogue;
+    public void setNextDialogue(boolean nextDialogue) {
+        this.hasNextDialogue = nextDialogue;
     }
 
     public boolean isMerchant() {
         return isMerchant;
     }
 
-    public void setMerchant(boolean isMerchant) {
-        this.isMerchant = isMerchant;
+    public void setMerchant(boolean merchant) {
+        this.isMerchant = merchant;
     }
 }

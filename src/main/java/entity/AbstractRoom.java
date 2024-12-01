@@ -1,20 +1,24 @@
 package entity;
 
-public abstract class Room {
+/**
+ * Represents an abstract room in the game.
+ * Specific room types extend this class to define their unique behaviors.
+ */
+public abstract class AbstractRoom {
+
     private final int roomNumber;
 
-    public String getDescription() {
-        return "description"; // This class is declared to return a String, even abstractly.
-    }
-    public Room(int roomNumber) {
+    public AbstractRoom(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public int getRoomType(){
-        return -1;
-    };
-        //0: Monster, 1: Item, 2: Trap, 3: Merchant
+    public String getDescription() {
+        return "description";
+    }
 
+    public int getRoomType() {
+        return -1;
+    }
 
     /**
      * Returns the room Number of the room.
@@ -24,6 +28,7 @@ public abstract class Room {
     public int getRoomNumber() {
         return roomNumber;
     }
+
     /**
      * Returns the item in the room.
      * Default implementation returns null, as not all rooms contain items.
@@ -31,8 +36,6 @@ public abstract class Room {
      * @return the item in the room, or null if none
      */
     public Item getItem() {
-        return null; // Default implementation
+        return null;
     }
-
-
 }

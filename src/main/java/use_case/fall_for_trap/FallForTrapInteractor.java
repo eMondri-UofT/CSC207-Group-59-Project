@@ -3,7 +3,7 @@ package use_case.fall_for_trap;
 /**
  * The Fall For Trap Interactor.
  */
-public class FallForTrapInteractor implements FallForTrapInputBoundary{
+public class FallForTrapInteractor implements FallForTrapInputBoundary {
     private FallForTrapDataAccessInterface fallForTrapDataAccessObject;
     private FallForTrapOutputBoundary fallForTrapPresenter;
 
@@ -14,14 +14,7 @@ public class FallForTrapInteractor implements FallForTrapInputBoundary{
     }
 
     @Override
-    public void execute(FallForTrapInputData fallForTrapInputData) {
-        final String name = fallForTrapInputData.getName();
-        final int damage = fallForTrapInputData.getDamage();
-        final int difficulty = fallForTrapInputData.getDifficulty();
-
-        fallForTrapDataAccessObject.setCurrentTrapName(fallForTrapInputData.getName());
-
-        final FallForTrapOutputData fallForTrapOutputData = new FallForTrapOutputData(false);
-        fallForTrapPresenter.prepareSuccessView(fallForTrapOutputData);
+    public void exitInteraction() {
+        fallForTrapPresenter.exitInteraction();
     }
 }

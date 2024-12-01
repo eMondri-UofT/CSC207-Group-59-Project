@@ -13,19 +13,19 @@ public class Main {
     public static void main(String[] args) {
         final AppBuilder appBuilder = new AppBuilder();
         final JFrame application = appBuilder
-                                            .addTalkToNpcView()
                                             .addOpenInventoryView()
                                             .addRoomView()
                                             .addCharacterCreationView()
                                             .addFallForTrapView()
+                                            .addTalkToNpcView()
                                             .addPickUpItemView()
                                             .addEquipItemView()
                                             .addFightMonsterView()
                                             .addRoomUseCase()
                                             .addOpenInventoryUseCase()
                                             .addCharacterCreationUseCase()
-                                            .addTalkToNpcView()
-                                            .addFallForTrapView()
+                                            .addTalkToNpcUseCase()
+                                            .addFallForTrapUseCase()
                                             .addMerchantView()
                                             .addMonsterUseCase()
                                             .addEquipItemUseCase()

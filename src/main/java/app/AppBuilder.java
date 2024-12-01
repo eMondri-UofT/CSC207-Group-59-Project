@@ -7,10 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import data_access.*;
-import entity.Floor;
-import entity.InventoryFactory;
-import entity.Npc;
-import entity.Trap;
+import entity.*;
 import interface_adapter.ViewManagerModel;
 
 import interface_adapter.equip_item.EquipItemController;
@@ -58,9 +55,7 @@ import use_case.pickup_item.PickUpItemDataAccessInterface;
 import use_case.pickup_item.PickUpItemInputBoundary;
 import use_case.pickup_item.PickUpItemInteractor;
 import use_case.pickup_item.PickUpItemOutputBoundary;
-import use_case.room_default.RoomInputBoundary;
-import use_case.room_default.RoomInteractor;
-import use_case.room_default.RoomOutputBoundary;
+import use_case.room_default.*;
 import use_case.character_creation.CharacterCreationInputBoundary;
 import use_case.character_creation.CharacterCreationInteractor;
 import use_case.character_creation.CharacterCreationOutputBoundary;
@@ -96,6 +91,8 @@ public class AppBuilder {
     private final FightMonsterDataAccessObject fightMonsterDataAccessObject = new FightMonsterDataAccessObject();
     private final EquipItemDataAccessObject equipItemDataAccessObject = new EquipItemDataAccessObject();
     private final PickUpItemDataAccessObject pickUpItemDataAccessObject = new PickUpItemDataAccessObject();
+    private final NpcRoomDataAccessInterface npcRoomDataAccessInterface = new NpcDataAccessObject();
+    private final TrapRoomDataAccessInterface trapRoomDataAccessInterface = new TrapDataAccessObject();
     private TalkToNpcViewModel talkToNpcViewModel;
     private FallForTrapViewModel fallForTrapViewModel;
     private RoomDefaultViewModel roomDefaultViewModel;
@@ -213,11 +210,13 @@ public class AppBuilder {
     public AppBuilder addRoomUseCase() {
         // Create the presenter with appropriate view models
         final RoomOutputBoundary roomOutputBoundary = new RoomDefaultPresenter(
-                viewManagerModel);
+                viewManagerModel, roomDefaultViewModel, talkToNpcViewModel,
+                fallForTrapViewModel, openInventoryViewModel);
 
         // Create the interactor with the presenter and data access objects
         final RoomInputBoundary roomInteractor =
-                new RoomInteractor(roomOutputBoundary, roomDataAccessObject, new Floor());
+                new RoomInteractor(roomOutputBoundary, roomDataAccessObject,
+                        npcRoomDataAccessInterface, trapRoomDataAccessInterface);
 
         // Create the controller with the interactor
         final RoomDefaultController roomDefaultController = new RoomDefaultController(roomInteractor);
@@ -292,7 +291,7 @@ public class AppBuilder {
      */
     public AppBuilder addTalkToNpcUseCase() {
         final TalkToNpcOutputBoundary talkToNpcOutputBoundary = new TalkToNpcPresenter(
-                viewManagerModel, talkToNpcViewModel, roomDefaultViewModel);
+                viewManagerModel, talkToNpcViewModel, merchantViewModel, roomDefaultViewModel);
 
         final TalkToNpcInputBoundary talkToNpcInteractor =
                 new TalkToNpcInteractor(npcDataAccessObject, talkToNpcOutputBoundary);
@@ -309,7 +308,7 @@ public class AppBuilder {
      */
     public AppBuilder addFallForTrapUseCase() {
         final FallForTrapOutputBoundary fallForTrapOutputBoundary = new FallForTrapPresenter(
-                viewManagerModel, fallForTrapViewModel, roomDefaultViewModel);
+                viewManagerModel, roomDefaultViewModel);
 
         final FallForTrapInputBoundary fallForTrapInteractor =
                 new FallForTrapInteractor(trapDataAccessObject, fallForTrapOutputBoundary);
@@ -339,12 +338,6 @@ public class AppBuilder {
 
         return this;
     }
-
-
-
-
-
-
 
     public AppBuilder addPickUpItemUseCase() {
         final PickUpItemOutputBoundary pickUpItemOutputBoundary = new PickUpItemPresenter(

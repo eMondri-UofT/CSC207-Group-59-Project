@@ -1,6 +1,7 @@
 package data_access;
 
 import entity.Item;
+import entity.ItemRoom;
 import entity.Player;
 import use_case.pickup_item.PickUpItemDataAccessInterface;
 
@@ -10,7 +11,7 @@ import use_case.pickup_item.PickUpItemDataAccessInterface;
 public class PickUpItemDataAccessObject implements PickUpItemDataAccessInterface {
     @Override
     public Item getItem() {
-        if (!(Player.getInstance().getCurrentRoom() instanceof entity.ItemRoom)) {
+        if (!(Player.getInstance().getCurrentRoom() instanceof ItemRoom)) {
             throw new IllegalStateException("Current room is not an ItemRoom.");
         }
         return Player.getInstance().getCurrentRoom().getItem();

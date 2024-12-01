@@ -12,7 +12,7 @@ public class Player {
     private String prace;
     private static Inventory inventory;
     private final Map<String, Item> equippedItems;
-    private Room currentRoom;
+    private AbstractRoom currentAbstractRoom;
     private int classArmor;
     private int classDamage;
     private int raceArmor;
@@ -156,17 +156,17 @@ public class Player {
      *
      * @return the current room of the player
      */
-    public Room getCurrentRoom() {
-        return currentRoom;
+    public AbstractRoom getCurrentRoom() {
+        return currentAbstractRoom;
     }
 
     /**
      * Setter for the current room.
      *
-     * @param currentRoom the room to set as the player's current room
+     * @param currentAbstractRoom the room to set as the player's current room
      */
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
+    public void setCurrentRoom(AbstractRoom currentAbstractRoom) {
+        this.currentAbstractRoom = currentAbstractRoom;
     }
 
 

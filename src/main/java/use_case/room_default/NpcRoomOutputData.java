@@ -1,11 +1,12 @@
-package use_case.talk_to_npc;
+package use_case.room_default;
 
 import java.util.List;
 
 /**
- * Output Data for the Talk To Npc Use Case.
+ * Represents the output data for an NPC room.
  */
-public class TalkToNpcOutputData {
+public class NpcRoomOutputData extends RoomOutputData {
+
     private final String name;
     private final String description;
     private final List<String> dialogue;
@@ -13,8 +14,9 @@ public class TalkToNpcOutputData {
     private final boolean hasNextDialogue;
     private final boolean isMerchant;
 
-    public TalkToNpcOutputData(String name, String description, List<String> dialogue, int currentDialogueIndex,
-                               boolean hasNextDialogue, boolean isMerchant) {
+    public NpcRoomOutputData(String roomDescription, String name, String description, List<String> dialogue,
+                             int currentDialogueIndex, boolean hasNextDialogue, boolean isMerchant) {
+        super(roomDescription, "NpcRoom");
         this.name = name;
         this.description = description;
         this.dialogue = dialogue;
@@ -40,7 +42,7 @@ public class TalkToNpcOutputData {
     }
 
     /**
-     * Checks if the NPC has next dialogue.
+     * Checks whether the NPC has next dialogue.
      * @return true if the NPC has next dialogue, false otherwise.
      */
     public boolean hasNextDialogue() {

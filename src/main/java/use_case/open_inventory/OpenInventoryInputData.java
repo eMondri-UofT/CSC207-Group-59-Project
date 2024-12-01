@@ -5,6 +5,6 @@ package use_case.open_inventory;
  */
 public class OpenInventoryInputData {
 
-    public OpenInventoryInputData() { }
-
+    public OpenInventoryInputData() {
+    }
 }

@@ -6,18 +6,19 @@ package use_case.talk_to_npc;
 public interface TalkToNpcOutputBoundary {
 
     /**
-     * Prepares the success view for the Talk To Npc Use Case.
-     * @param outputData the output data
+     * Updates the view with the next dialogue of the NPC.
+     * @param outputData the output data containing NPC details and dialogue information.
      */
-    void prepareSuccessView(TalkToNpcOutputData outputData);
+    void moveToNextDialogue(TalkToNpcOutputData outputData);
 
     /**
-     * Prepares the failure view for the Talk To Npc Use Case.
-     * @param errorMessage the explanation of the failure
+     * Switches the view to the merchant interface when interacting with a merchant NPC.
      */
-    void prepareFailView(String errorMessage);
-
     void switchToMerchantView();
 
+    /**
+     * Exits the current interaction with the NPC.
+     * Signals the view to transition to the appropriate state after the interaction ends.
+     */
     void exitInteraction();
 }

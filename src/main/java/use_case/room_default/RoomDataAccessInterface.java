@@ -1,6 +1,7 @@
 package use_case.room_default;
 
-import entity.Room;
+import entity.AbstractRoom;
+import entity.Floor;
 
 /**
  * Data Access Interface for Room Use Case.
@@ -8,9 +9,26 @@ import entity.Room;
 public interface RoomDataAccessInterface {
 
     /**
-     * Fetches a room by its number.
-     * @param roomNumber the room number
-     * @return the Room object
+     * Retrieves the current floor in the system.
+     * @return the current floor.
      */
-    Room getRoomByNumber(int roomNumber);
+    Floor getFloor();
+
+    /**
+     * Retrieves the index of the current room within the floor.
+     * @return the index of the current room.
+     */
+    int getCurrentRoomIndex();
+
+    /**
+     * Sets the index of the current room within the floor.
+     * @param currentRoomIndex the new index of the current room.
+     */
+    void setCurrentRoomIndex(int currentRoomIndex);
+
+    /**
+     * Retrieves the current room based on the current room index.
+     * @return the current room.
+     */
+    AbstractRoom getCurrentRoom();
 }

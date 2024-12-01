@@ -1,15 +1,19 @@
 package view;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import interface_adapter.room_default.RoomDefaultController;
 import interface_adapter.room_default.RoomDefaultState;
 import interface_adapter.room_default.RoomDefaultViewModel;
@@ -19,11 +23,12 @@ import interface_adapter.room_default.RoomDefaultViewModel;
  */
 public class RoomView extends JPanel implements ActionListener, PropertyChangeListener {
 
+    private static final int HEIGHT = 10;
+
     private final String viewName = "room view";
     private final RoomDefaultViewModel roomViewModel;
 
-    private final JLabel roomDescriptionLabel = new JLabel("Room Description:");
-    private final JLabel roomContentLabel = new JLabel("Room Content:");
+    private final JLabel roomDescriptionLabel;
 
     private RoomDefaultController roomController;
 
@@ -38,39 +43,59 @@ public class RoomView extends JPanel implements ActionListener, PropertyChangeLi
         final JLabel title = new JLabel("Dungeon Room");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        roomDescriptionLabel = new JLabel();
+        roomDescriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         interactButton = new JButton("Interact");
         nextRoomButton = new JButton("Next Room");
         openInventoryButton = new JButton("Open Inventory");
-
-        interactButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                final RoomDefaultState currentState = roomViewModel.getState();
-                roomController.interactWithRoom(currentState.getRoomNumber());
-            }
-        });
-
-        nextRoomButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                roomController.goToNextRoom();
-            }
-        });
-
-        openInventoryButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                roomController.returnToMainMenu();
-            }
-        });
 
         final JPanel buttons = new JPanel();
         buttons.add(interactButton);
         buttons.add(nextRoomButton);
         buttons.add(openInventoryButton);
+        buttons.setAlignmentX(CENTER_ALIGNMENT);
+
+        interactButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(interactButton)) {
+                            final RoomDefaultState currentState = roomViewModel.getState();
+                            roomController.interactWithRoom(currentState.getRoomNumber());
+                        }
+                    }
+                }
+        );
+
+        nextRoomButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(nextRoomButton)) {
+                            roomController.goToNextRoom();
+                        }
+                    }
+                }
+        );
+
+        openInventoryButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(openInventoryButton)) {
+                            roomController.returnToMainMenu();
+                        }
+                    }
+                }
+        );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
+        this.add(Box.createRigidArea(new Dimension(0, HEIGHT)));
         this.add(title);
         this.add(roomDescriptionLabel);
-        this.add(roomContentLabel);
+        this.add(Box.createRigidArea(new Dimension(0, HEIGHT)));
         this.add(buttons);
+        this.add(Box.createRigidArea(new Dimension(0, HEIGHT)));
+        this.add(Box.createVerticalGlue());
     }
 
     @Override
@@ -85,8 +110,7 @@ public class RoomView extends JPanel implements ActionListener, PropertyChangeLi
     }
 
     private void updateView(RoomDefaultState state) {
-        roomDescriptionLabel.setText("Room Description: " + state.getRoomDescription());
-        roomContentLabel.setText("Room Content: " + state.getRoomContent());
+        roomDescriptionLabel.setText(state.getRoomDescription());
     }
 
     public String getViewName() {

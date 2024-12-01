@@ -12,26 +12,31 @@ public class RoomDefaultViewModel extends ViewModel<RoomDefaultState> {
         setState(new RoomDefaultState());
     }
 
+    /**
+     * Updates the room description in the current state.
+     * @param description the new description of the room.
+     */
     public void updateRoomDescription(String description) {
-        RoomDefaultState currentState = getState();
+        final RoomDefaultState currentState = getState();
         currentState.setRoomDescription(description);
         setState(currentState);
     }
 
-    public void updateRoomContent(String content) {
-        RoomDefaultState currentState = getState();
-        currentState.setRoomContent(content);
-        setState(currentState);
-    }
-
+    /**
+     * Updates the error message in the current state.
+     * @param errorMessage the new error message to display.
+     */
     public void updateErrorMessage(String errorMessage) {
-        RoomDefaultState currentState = getState();
+        final RoomDefaultState currentState = getState();
         currentState.setErrorMessage(errorMessage);
         setState(currentState);
     }
 
+    /**
+     * Clears the error message in the current state.
+     */
     public void clearErrorMessage() {
-        RoomDefaultState currentState = getState();
+        final RoomDefaultState currentState = getState();
         currentState.setErrorMessage("");
         setState(currentState);
     }

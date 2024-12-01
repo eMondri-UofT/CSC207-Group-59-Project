@@ -1,6 +1,7 @@
 package data_access;
 
-import entity.Room;
+import entity.AbstractRoom;
+import entity.Floor;
 import use_case.room_default.RoomDataAccessInterface;
 
 /**
@@ -8,10 +9,26 @@ import use_case.room_default.RoomDataAccessInterface;
  * NOT persist data between runs of the program.
  */
 public class RoomDataAccessObject implements RoomDataAccessInterface {
-    // For now this has no code, it's just a placeholder.
+    private Floor floor = new Floor();
+    private int currentRoomIndex;
 
     @Override
-    public Room getRoomByNumber(int roomNumber) {
-        return null;
+    public Floor getFloor() {
+        return floor;
+    }
+
+    @Override
+    public int getCurrentRoomIndex() {
+        return currentRoomIndex;
+    }
+
+    @Override
+    public void setCurrentRoomIndex(int currentRoomIndex) {
+        this.currentRoomIndex = currentRoomIndex;
+    }
+
+    @Override
+    public AbstractRoom getCurrentRoom() {
+        return floor.getRoomList().get(currentRoomIndex);
     }
 }

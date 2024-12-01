@@ -1,19 +1,11 @@
 package use_case.talk_to_npc;
 
-import entity.Npc;
-import entity.NpcRoom;
-import use_case.open_inventory.OpenInventoryOutputData;
-
-import java.util.List;
-
 /**
  * The Talk To Npc Interactor.
  */
-public class TalkToNpcInteractor implements TalkToNpcInputBoundary{
+public class TalkToNpcInteractor implements TalkToNpcInputBoundary {
     private TalkToNpcDataAccessInterface talkToNpcDataAccessObject;
     private TalkToNpcOutputBoundary talkToNpcPresenter;
-    private Npc npc;
-
 
     public TalkToNpcInteractor(TalkToNpcDataAccessInterface talkToNpcDataAccessInterface,
                                TalkToNpcOutputBoundary talkToNpcOutputBoundary) {
@@ -22,39 +14,21 @@ public class TalkToNpcInteractor implements TalkToNpcInputBoundary{
     }
 
     @Override
-    public void execute(TalkToNpcInputData talkToNpcInputData) {
-        npc = new Npc(talkToNpcInputData.getName(), talkToNpcInputData.getDescription(), talkToNpcInputData.getDialogue());
-
-        talkToNpcDataAccessObject.setCurrentNpcName(npc.getName());
-
-        final TalkToNpcOutputData talkToNpcOutputData = new TalkToNpcOutputData(
-                npc.getName(),
-                npc.getDescription(),
-                npc.getDialogue(),
-                npc.getCurrentDialogueIndex(),
-                npc.hasNextDialogue(),
-                npc.isMerchant()
-        );
-
-        talkToNpcPresenter.prepareSuccessView(talkToNpcOutputData);
-    }
-
-    @Override
-    public void moveToNextDialogue() {
-        if (npc.hasNextDialogue()) {
-            npc.moveToNextDialogue();
+    public void moveToNextDialogue(TalkToNpcInputData talkToNpcInputData) {
+        int nextDialogueIndex = talkToNpcInputData.getCurrentDialogueIndex();
+        if (talkToNpcInputData.isHasNextDialogue()) {
+            nextDialogueIndex++;
         }
 
-        TalkToNpcOutputData talkToNpcOutputData = new TalkToNpcOutputData(
-                npc.getName(),
-                npc.getDescription(),
-                npc.getDialogue(),
-                npc.getCurrentDialogueIndex(),
-                npc.hasNextDialogue(),
-                npc.isMerchant()
-        );
+        final TalkToNpcOutputData talkToNpcOutputData = new TalkToNpcOutputData(
+                talkToNpcInputData.getName(),
+                talkToNpcInputData.getDescription(),
+                talkToNpcInputData.getDialogue(),
+                nextDialogueIndex,
+                talkToNpcInputData.isHasNextDialogue(),
+                talkToNpcInputData.isMerchant());
 
-        talkToNpcPresenter.prepareSuccessView(talkToNpcOutputData);
+        talkToNpcPresenter.moveToNextDialogue(talkToNpcOutputData);
     }
 
     @Override

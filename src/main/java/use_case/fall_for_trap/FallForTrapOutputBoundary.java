@@ -6,14 +6,7 @@ package use_case.fall_for_trap;
 public interface FallForTrapOutputBoundary {
 
     /**
-     * Prepares the success view for the Fall For Trap Use Case.
-     * @param outputData the output data
+     * Prepares exit interaction view for the trap use case.
      */
-    void prepareSuccessView(FallForTrapOutputData outputData);
-
-    /**
-     * Prepares the failure view for the Fall For Trap Use Case.
-     * @param errorMessage the explanation of the failure
-     */
-    void prepareFailView(String errorMessage);
+    void exitInteraction();
 }

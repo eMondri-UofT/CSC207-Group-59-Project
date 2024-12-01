@@ -1,11 +1,11 @@
-package use_case.talk_to_npc;
+package use_case.room_default;
 
 import entity.Npc;
 
 /**
- * DAO for the Talk To Npc Use Case.
+ * Interface for accessing and managing NPC data in NPC rooms.
  */
-public interface TalkToNpcDataAccessInterface {
+public interface NpcRoomDataAccessInterface {
 
     /**
      * Returns the current NPC.
@@ -14,20 +14,19 @@ public interface TalkToNpcDataAccessInterface {
     Npc getCurrentNpc();
 
     /**
-     * Sets the current NPC being interacted with.
+     * Sets the current NPC.
      * @param npc the NPC to set as the current NPC.
      */
     void setCurrentNpc(Npc npc);
 
     /**
-     * Generates a random NPC for interaction.
+     * Generates a random NPC.
      * @return a randomly generated NPC.
      */
     Npc generateRandomNpc();
 
     /**
-     * Loads all NPCs into the system.
+     * Loads all NPCs into the system for use in NPC rooms.
      */
     void loadNpcs();
 }
-
