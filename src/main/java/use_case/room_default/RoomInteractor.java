@@ -27,7 +27,7 @@ public class RoomInteractor implements RoomInputBoundary {
     }
 
     @Override
-    public void interactWithRoom(RoomInputData inputData) {
+    public void interactWithRoom() {
         final AbstractRoom abstractRoom = roomDataAccessObject.getCurrentRoom();
 
         if (abstractRoom == null) {

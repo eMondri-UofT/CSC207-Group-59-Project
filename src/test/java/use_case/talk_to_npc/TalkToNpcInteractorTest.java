@@ -1,115 +1,66 @@
 package use_case.talk_to_npc;
 
-import data_access.NpcDataAccessObject;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
+import data_access.NpcDataAccessObject;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class TalkToNpcInteractorTest {
 
     @Test
-    void moveToNextDialogueTest() {
-        TalkToNpcInputData inputData = new TalkToNpcInputData();
-        TalkToNpcDataAccessInterface npcRepository = new NpcDataAccessObject();
+    void successTest() {
+        final TalkToNpcInputData inputData = new TalkToNpcInputData(
+                "ALCHEMIST",
+                "Medium humanoid (Artificer), any alignment",
+                Arrays.asList(
+                        "Careful there, I just cleaned this place.",
+                        "This? Just a little something I'm experimenting with.",
+                        "Sometimes I wonder if all this work is worth it.",
+                        "The right formula can change everything - or ruin it.",
+                        "My best ideas come when I'm not even trying.",
+                        "Don't touch that! Oh, wait... never mind.",
+                        "If this works, I might finally get some respect around here."),
+                        0,
+                        true,
+                        false
+        );
+        final TalkToNpcDataAccessInterface npcRepository = new NpcDataAccessObject();
 
-        // This creates a successPresenter that tests whether the test case is as we expect.
-        TalkToNpcOutputBoundary successPresenter = new TalkToNpcOutputBoundary() {
+        final TalkToNpcOutputBoundary successPresenter = new TalkToNpcOutputBoundary() {
             @Override
-            public void prepareSuccessView(LoginOutputData user) {
-                assertEquals("Paul", user.getUsername());
+            public void moveToNextDialogue(TalkToNpcOutputData outputData) {
+                assertEquals("ALCHEMIST", outputData.getName());
+                assertEquals("Medium humanoid (Artificer), any alignment", outputData.getDescription());
+                assertEquals(Arrays.asList(
+                        "Careful there, I just cleaned this place.",
+                        "This? Just a little something I'm experimenting with.",
+                        "Sometimes I wonder if all this work is worth it.",
+                        "The right formula can change everything - or ruin it.",
+                        "My best ideas come when I'm not even trying.",
+                        "Don't touch that! Oh, wait... never mind.",
+                        "If this works, I might finally get some respect around here."), outputData.getDialogue());
+                assertEquals(1, outputData.getCurrentDialogueIndex());
+                assertEquals(true, outputData.hasNextDialogue());
+                assertEquals(false, outputData.isMerchant());
             }
 
             @Override
-            public void prepareFailView(String error) {
-                fail("Use case failure is unexpected.");
-            }
-        };
-
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, successPresenter);
-        interactor.execute(inputData);
-    }
-
-    @Test
-    void successUserLoggedInTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "password");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
-
-        // For the success test, we need to add Paul to the data access repository before we log in.
-        UserFactory factory = new CommonUserFactory();
-        User user = factory.create("Paul", "password");
-        userRepository.save(user);
-
-        // This creates a successPresenter that tests whether the test case is as we expect.
-        LoginOutputBoundary successPresenter = new LoginOutputBoundary() {
-            @Override
-            public void prepareSuccessView(LoginOutputData user) {
-                assertEquals("Paul", userRepository.getCurrentUsername());
+            public void switchToMerchantView() {
+                // This is expected
             }
 
             @Override
-            public void prepareFailView(String error) {
-                fail("Use case failure is unexpected.");
-            }
-        };
-
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, successPresenter);
-        assertEquals(null, userRepository.getCurrentUsername());
-
-        interactor.execute(inputData);
-    }
-
-    @Test
-    void failurePasswordMismatchTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "wrong");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
-
-        // For this failure test, we need to add Paul to the data access repository before we log in, and
-        // the passwords should not match.
-        UserFactory factory = new CommonUserFactory();
-        User user = factory.create("Paul", "password");
-        userRepository.save(user);
-
-        // This creates a presenter that tests whether the test case is as we expect.
-        LoginOutputBoundary failurePresenter = new LoginOutputBoundary() {
-            @Override
-            public void prepareSuccessView(LoginOutputData user) {
-                // this should never be reached since the test case should fail
-                fail("Use case success is unexpected.");
-            }
-
-            @Override
-            public void prepareFailView(String error) {
-                assertEquals("Incorrect password for \"Paul\".", error);
+            public void exitInteraction() {
+                // This is expected
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, failurePresenter);
-        interactor.execute(inputData);
-    }
-
-    @Test
-    void failureUserDoesNotExistTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "password");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
-
-        // Add Paul to the repo so that when we check later they already exist
-
-        // This creates a presenter that tests whether the test case is as we expect.
-        LoginOutputBoundary failurePresenter = new LoginOutputBoundary() {
-            @Override
-            public void prepareSuccessView(LoginOutputData user) {
-                // this should never be reached since the test case should fail
-                fail("Use case success is unexpected.");
-            }
-
-            @Override
-            public void prepareFailView(String error) {
-                assertEquals("Paul: Account does not exist.", error);
-            }
-        };
-
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, failurePresenter);
-        interactor.execute(inputData);
+        final TalkToNpcInputBoundary interactor = new TalkToNpcInteractor(npcRepository, successPresenter);
+        interactor.moveToNextDialogue(inputData);
+        interactor.switchToMerchantView();
+        interactor.exitInteraction();
     }
 }

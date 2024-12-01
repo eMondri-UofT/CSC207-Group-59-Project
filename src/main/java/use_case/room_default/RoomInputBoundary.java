@@ -7,9 +7,8 @@ public interface RoomInputBoundary {
 
     /**
      * Executes the room interaction use case.
-     * @param inputData the input data containing room details
      */
-    void interactWithRoom(RoomInputData inputData);
+    void interactWithRoom();
 
     /**
      * Proceeds to the next room in the sequence.

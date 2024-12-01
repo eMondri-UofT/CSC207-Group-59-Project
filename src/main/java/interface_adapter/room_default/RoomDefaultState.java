@@ -7,9 +7,7 @@ package interface_adapter.room_default;
 public class RoomDefaultState {
 
     private String roomDescription = "No description available.";
-    private String roomContent = "No content available.";
     private String errorMessage = "";
-    private int roomNumber = -1;
     private String roomType = "";
 
     /**

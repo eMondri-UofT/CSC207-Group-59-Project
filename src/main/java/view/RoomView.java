@@ -60,8 +60,7 @@ public class RoomView extends JPanel implements ActionListener, PropertyChangeLi
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(interactButton)) {
-                            final RoomDefaultState currentState = roomViewModel.getState();
-                            roomController.interactWithRoom(currentState.getRoomNumber());
+                            roomController.interactWithRoom();
                         }
                     }
                 }

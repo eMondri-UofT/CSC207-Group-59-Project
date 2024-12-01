@@ -1,7 +1,6 @@
 package interface_adapter.room_default;
 
 import use_case.room_default.RoomInputBoundary;
-import use_case.room_default.RoomInputData;
 
 /**
  * Controller for the Room Default Use Case.
@@ -20,11 +19,9 @@ public class RoomDefaultController {
 
     /**
      * Executes interaction with the room.
-     *
-     * @param roomNumber the room number to interact with
      */
-    public void interactWithRoom(int roomNumber) {
-        roomUseCaseInteractor.interactWithRoom(new RoomInputData(roomNumber));
+    public void interactWithRoom() {
+        roomUseCaseInteractor.interactWithRoom();
     }
 
     /**
