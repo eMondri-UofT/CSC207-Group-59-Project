@@ -114,6 +114,8 @@ public class AppBuilder {
     private MerchantView merchantView;
     private FightMonsterViewModel fightMonsterViewModel;
     private MonsterView monsterView;
+
+    private Floor floor;
   
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -216,8 +218,9 @@ public class AppBuilder {
                 viewManagerModel);
 
         // Create the interactor with the presenter and data access objects
+        floor = new Floor();
         final RoomInputBoundary roomInteractor =
-                new RoomInteractor(roomOutputBoundary, roomDataAccessObject, new Floor());
+                new RoomInteractor(roomOutputBoundary, roomDataAccessObject, floor);
 
         // Create the controller with the interactor
         final RoomDefaultController roomDefaultController = new RoomDefaultController(roomInteractor);
@@ -267,7 +270,7 @@ public class AppBuilder {
                 viewManagerModel, characterCreationViewModel, roomDefaultViewModel);
 
         final CharacterCreationInputBoundary characterCreationInteractor =
-                new CharacterCreationInteractor(playerDataAccessObject, characterCreationOutputBoundary);
+                new CharacterCreationInteractor(playerDataAccessObject, characterCreationOutputBoundary, floor);
 
         final CharacterCreationController characterCreationController =
                 new CharacterCreationController(characterCreationInteractor);

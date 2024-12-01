@@ -5,13 +5,25 @@ package use_case.character_creation;
  */
 public class CharacterCreationOutputData {
 
-    private boolean useCaseFailed;
+    private final String roomDescription;
+    private final String roomType;
 
-    public CharacterCreationOutputData(boolean useCaseFailed) {
-        this.useCaseFailed = useCaseFailed;
+    /**
+     * Constructor for CharacterCreationOutputData.
+     *
+     * @param roomDescription the description of the room
+     * @param roomType        the type of the room
+     */
+    public CharacterCreationOutputData(String roomDescription, String roomType) {
+        this.roomDescription = roomDescription;
+        this.roomType = roomType;
     }
 
-    public boolean isUseCaseFailed() {
-        return useCaseFailed;
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
+    public String getRoomType() {
+        return roomType;
     }
 }

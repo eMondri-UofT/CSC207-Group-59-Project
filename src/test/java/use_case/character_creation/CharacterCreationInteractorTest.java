@@ -1,11 +1,12 @@
 package use_case.character_creation;
 
 import data_access.PlayerDataAccessObject;
+import entity.Floor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SignupInteractorTest {
+class CharacterCreationInteractorTest {
 
     @Test
     void successfulAPITest() {
@@ -32,7 +33,8 @@ class SignupInteractorTest {
             }
         };
 
-        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter);
+        Floor floor = new Floor();
+        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter, floor);
         interactor.execute(inputData);
     }
 
@@ -60,7 +62,8 @@ class SignupInteractorTest {
             }
         };
 
-        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter);
+        Floor floor = new Floor();
+        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter, floor);
         interactor.execute();
     }
 }

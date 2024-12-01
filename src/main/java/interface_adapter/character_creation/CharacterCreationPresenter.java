@@ -24,12 +24,24 @@ public class CharacterCreationPresenter implements CharacterCreationOutputBounda
 
     @Override
     public void prepareSuccessView(CharacterCreationOutputData response) {
-        final RoomDefaultState roomDefaultState = roomDefaultViewModel.getState();
-        this.roomDefaultViewModel.setState(roomDefaultState);
-        this.roomDefaultViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setState(roomDefaultViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+        String roomType = response.getRoomType();
+        switch (roomType) {
+            case "ItemRoom":
+                viewManagerModel.setState("pick up item");
+                break;
+            case "TrapRoom":
+                viewManagerModel.setState("fall for trap");
+                break;
+            case "MonsterRoom":
+                viewManagerModel.setState("fight monster");
+                break;
+            case "MerchantRoom":
+                viewManagerModel.setState("merchant");
+                break;
+            default:
+                viewManagerModel.setState("room view");
+        }
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override

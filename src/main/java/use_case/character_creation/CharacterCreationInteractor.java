@@ -1,16 +1,24 @@
 package use_case.character_creation;
 
+import entity.Room;
+import entity.Floor;
+import use_case.room_default.RoomOutputData;
+
+import java.util.List;
+
 /**
  * The Character Creation Interactor.
  */
 public class CharacterCreationInteractor implements CharacterCreationInputBoundary {
     private CharacterCreationDataAccessInterface characterDataAccessObject;
     private CharacterCreationOutputBoundary characterCreationPresenter;
+    private Floor floor;
 
     public CharacterCreationInteractor(CharacterCreationDataAccessInterface characterDataAccessInterface,
-                                   CharacterCreationOutputBoundary characterCreationOutputBoundary) {
+                                   CharacterCreationOutputBoundary characterCreationOutputBoundary, Floor floor) {
         this.characterDataAccessObject = characterDataAccessInterface;
         this.characterCreationPresenter = characterCreationOutputBoundary;
+        this.floor = floor;
     }
 
     @Override
@@ -30,8 +38,10 @@ public class CharacterCreationInteractor implements CharacterCreationInputBounda
             characterCreationPresenter.prepareFailView("Please Select Both a Class and a Race!");
         }
         else {
-            final CharacterCreationOutputData characterCreationOutputData = new CharacterCreationOutputData(false);
-            characterCreationPresenter.prepareSuccessView(characterCreationOutputData);
+            List<Room> rooms = floor.getRoomList();
+            Room room = rooms.get(0);
+            CharacterCreationOutputData outputData = new CharacterCreationOutputData(room.getDescription(), room.getClass().getSimpleName());
+            characterCreationPresenter.prepareSuccessView(outputData);
         }
     }
 }
