@@ -4,7 +4,7 @@ package entity;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class Item_Test {
+class ItemTest {
 
     @Test
     void testItemInitialization() {
