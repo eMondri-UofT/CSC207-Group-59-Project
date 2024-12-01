@@ -1,12 +1,10 @@
 package interface_adapter.merchant;
 
-import entity.Merchant;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.room_default.RoomDefaultState;
 import interface_adapter.room_default.RoomDefaultViewModel;
 import use_case.merchant.MerchantOutputBoundary;
 import use_case.merchant.MerchantOutputData;
-import view.MerchantView;
 
 public class MerchantPresenter implements MerchantOutputBoundary {
     private final MerchantViewModel merchantViewModel;
@@ -30,8 +28,13 @@ public class MerchantPresenter implements MerchantOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void prepareBuyView(MerchantOutputData merchantOutputData) {
-        final MerchantState merchantState = merchantViewModel.getState();
-        merchantState.buy();
+    public void prepareBuyView(MerchantOutputData merchantOutputData, String itemName) {
+//        final MerchantState merchantState = merchantViewModel.getState();
+//        String specificItem = merchantOutputData.getSpecificItemName(itemName);
+//        merchantState.buy(specificItem);
+//        this.merchantViewModel.setState(merchantState);
+//        this.merchantViewModel.firePropertyChanged();
+//        this.viewManagerModel.setState(merchantViewModel.getViewName());
+//        this.viewManagerModel.firePropertyChanged();
     }
 }

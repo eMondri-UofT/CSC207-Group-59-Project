@@ -63,5 +63,18 @@ class Item_Test {
             assertEquals("Buff", randomItem.getCategory());
         }
     }
+
+    @Test
+    void testDeterminePrice() {
+        Item commonItem = new Item("Basic Sword", "Weapon", "Common");
+        Item rareItem = new Item("Mystic Bow", "Weapon", "Rare");
+        Item epicItem = new Item("Dragon Shield", "Armor", "Epic");
+        Item legendaryItem = new Item("Excalibur", "Weapon", "Legendary");
+
+        assertEquals(10, commonItem.getPrice());
+        assertEquals(25, rareItem.getPrice());
+        assertEquals(50, epicItem.getPrice());
+        assertEquals(100, legendaryItem.getPrice());
+    }
 }
 
