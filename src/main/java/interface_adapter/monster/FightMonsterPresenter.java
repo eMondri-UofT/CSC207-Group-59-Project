@@ -6,6 +6,9 @@ import interface_adapter.room_default.RoomDefaultViewModel;
 import use_case.monster.FightMonsterOutputBoundary;
 import use_case.monster.FightMonsterOutputData;
 
+/**
+ * The Presenter for the Fight Monster Use Case
+ */
 public class FightMonsterPresenter implements FightMonsterOutputBoundary {
     private FightMonsterViewModel fightMonsterViewModel; // Would be used for fail view when implemented
     private ViewManagerModel viewManagerModel;

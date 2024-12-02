@@ -1,5 +1,8 @@
 package use_case.monster;
 
+/**
+ * The output data for the Fight Monster Use Case
+ */
 public class FightMonsterOutputData {
     private boolean useCaseFailed;
 
