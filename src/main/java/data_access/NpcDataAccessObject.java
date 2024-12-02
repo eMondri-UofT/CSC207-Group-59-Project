@@ -15,6 +15,7 @@ import use_case.talk_to_npc.TalkToNpcDataAccessInterface;
 public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoomDataAccessInterface {
     private final Map<String, Npc> npcs = new HashMap<>();
     private Npc currentNpc;
+    private boolean isMerchant;
 
     @Override
     public Npc getCurrentNpc() {
@@ -37,6 +38,10 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
             currentNpc = npcs.remove(randomKey);
         }
         return currentNpc;
+    }
+
+    public boolean isMerchant() {
+        return currentNpc != null && currentNpc.isMerchant();
     }
 
     @Override

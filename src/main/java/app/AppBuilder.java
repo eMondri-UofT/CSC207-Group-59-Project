@@ -190,7 +190,7 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addMerchantView() {
-        merchantViewModel = new MerchantViewModel();
+        merchantViewModel = new MerchantViewModel(npcDataAccessObject);
         merchantView = new MerchantView(merchantViewModel);
         cardPanel.add(merchantView, merchantViewModel.getViewName());
         return this;

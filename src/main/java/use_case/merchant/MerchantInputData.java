@@ -31,4 +31,8 @@ public class MerchantInputData {
         return items;
     }
 
+    public String getItemName() {
+        return itemName;
+    }
+
 }

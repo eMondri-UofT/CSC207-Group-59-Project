@@ -64,6 +64,17 @@ public class Inventory {
     }
 
     /**
+     * Checks if the inventory contains at least one item with the given name.
+     *
+     * @param name the name of the item to check for
+     * @return true if the item exists in the inventory, false otherwise
+     */
+    public boolean hasItem(String name) {
+        List<Item> itemList = items.get(name);
+        return itemList != null && !itemList.isEmpty();
+    }
+
+    /**
      * Returns an item from the inventory.
      *
      * @param name the name of the item

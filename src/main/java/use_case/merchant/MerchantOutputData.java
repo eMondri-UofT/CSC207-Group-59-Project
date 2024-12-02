@@ -1,18 +1,27 @@
 package use_case.merchant;
 
+import entity.Item;
+
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
  * Output Data for Merchant Use Case.
  */
 public class MerchantOutputData {
-    private final String[] merchantItems;
+    private final Map<String, List<Item>> merchantItems; // Category to items mapping
 
-    public MerchantOutputData(String[] merchantItems) {
+    public MerchantOutputData(Map<String, List<Item>> merchantItems) {
         this.merchantItems = merchantItems;
     }
 
-    public String[] getMerchantItems() {
+    /**
+     * Gets the merchant's items as a category-to-item mapping.
+     *
+     * @return The merchant's items.
+     */
+    public Map<String, List<Item>> getMerchantItems() {
         return merchantItems;
     }
 
@@ -22,10 +31,12 @@ public class MerchantOutputData {
      * @param itemName The name of the item to retrieve.
      * @return The item name if found; otherwise, null.
      */
-    public String getSpecificItem(String itemName) {
-        for (String item : merchantItems) {
-            if (item.equals(itemName)) {
-                return item;
+    public Item getSpecificItem(String itemName) {
+        for (List<Item> items : merchantItems.values()) {
+            for (Item item : items) {
+                if (item.equals(itemName)) {
+                    return item;
+                }
             }
         }
         return null; // Item not found
@@ -38,9 +49,7 @@ public class MerchantOutputData {
      * @return The name of the item if found; otherwise, a message indicating it wasn't found.
      */
     public String getSpecificItemName(String itemName) {
-        String item = getSpecificItem(itemName);
-        // Value if false
-        return Objects.requireNonNullElse(item, "Item not found"); // Value if true
+        Item item = getSpecificItem(itemName);
+        return Objects.requireNonNullElse(item, "Item not found").toString();
     }
-
 }

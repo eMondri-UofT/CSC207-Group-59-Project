@@ -116,7 +116,7 @@ public class Item {
      * @param rarity the rarity of the item
      * @return the price of the item
      */
-    private int determinePrice(String rarity) {
+    public int determinePrice(String rarity) {
         switch (rarity) {
             case "Common":
                 return 10;

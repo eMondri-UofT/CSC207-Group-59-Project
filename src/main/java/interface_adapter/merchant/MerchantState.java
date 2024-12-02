@@ -1,6 +1,8 @@
 package interface_adapter.merchant;
 
+import data_access.NpcDataAccessObject;
 import entity.Item;
+import entity.Merchant;
 import entity.Player;
 
 import java.util.List;
@@ -11,37 +13,46 @@ import java.util.Map;
  */
 public class MerchantState {
     private Map<String, List<Item>> items;
+    private String error;
+    private final NpcDataAccessObject npcDataAccessObject;
 
     public void setItems(Map<String, List<Item>> items) {this.items = items;}
 
     public Map<String, List<Item>> getItems() {return items;}
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    /**
+     * Constructor for MerchantState.
+     *
+     * @param npcDataAccessObject The data access object for NPCs.
+     */
+    public MerchantState(NpcDataAccessObject npcDataAccessObject) {
+        this.npcDataAccessObject = npcDataAccessObject;
+    }
+
     public void buy(String itemName) {
-        Player player = Player.getInstance(); // Access the player instance
-
-        // Search for the item across all categories
-        for (List<Item> categoryItems : items.values()) {
-            for (Item item : categoryItems) {
-                if (item.getName().equals(itemName)) {
-                    // Check if the player has enough gold
-                    if (!player.subtractGold(item.getPrice())) {
-                        throw new IllegalArgumentException("Not enough gold to buy " + itemName);
-                    }
-
-                    // Remove the item from the merchant's inventory
-                    categoryItems.remove(item);
-
-                    // Add the item to the player's inventory
-                    Player.getInventory().addItem(itemName, item);
-
-                    System.out.println("Successfully purchased: " + itemName);
-                    return; // Exit the method after successful purchase
-                }
-            }
+        // Step 1: Get the current NPC and check if it is a merchant
+        Merchant merchant = (Merchant) npcDataAccessObject.getCurrentNpc();
+        if (merchant == null || !merchant.isMerchant()) {
+            throw new IllegalArgumentException("The current NPC is not a merchant.");
         }
 
-        // If the item is not found in any category
-        throw new IllegalArgumentException("Item not found: " + itemName);
+        // Step 2: Attempt to buy the item from the merchant
+        Player player = Player.getInstance();
+        try {
+            merchant.sellItem(itemName, player);
+            System.out.println("Successfully purchased: " + itemName);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Purchase failed: " + e.getMessage());
+        }
     }
+
 
 }
