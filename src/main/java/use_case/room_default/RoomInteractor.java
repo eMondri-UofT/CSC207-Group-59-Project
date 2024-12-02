@@ -2,11 +2,7 @@ package use_case.room_default;
 
 import java.util.List;
 
-import entity.AbstractRoom;
-import entity.Npc;
-import entity.NpcRoom;
-import entity.Trap;
-import entity.TrapRoom;
+import entity.*;
 
 /**
  * The Room Default Interactor.
@@ -78,12 +74,16 @@ public class RoomInteractor implements RoomInputBoundary {
                     nextAbstractRoom.getClass().getSimpleName()));
         }
         else {
-            roomPresenter.prepareFailView("You have reached the end of the floor.");
+            Floor newFloor = roomDataAccessObject.makeNewFloor();
+            roomDataAccessObject.setCurrentRoomIndex(0);
+            final AbstractRoom newRoom = newFloor.getRoomList().get(0);
+            roomPresenter.prepareNextRoomView(new RoomOutputData(newRoom.getDescription(),
+                    newRoom.getClass().getSimpleName()));
         }
     }
 
     @Override
     public void returnToMainMenu() {
-        roomPresenter.prepareFailView("Returning to Open Inventory.");
+        roomPresenter.prepareInventoryView();
     }
 }

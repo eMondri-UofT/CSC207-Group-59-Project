@@ -123,7 +123,7 @@ public class RoomDefaultPresenter implements RoomOutputBoundary {
     }
 
     @Override
-    public void prepareMainMenuView() {
+    public void prepareInventoryView() {
         final OpenInventoryState openInventoryState = openInventoryViewModel.getState();
         this.openInventoryViewModel.setState(openInventoryState);
         this.openInventoryViewModel.firePropertyChanged();

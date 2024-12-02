@@ -15,6 +15,12 @@ public interface RoomDataAccessInterface {
     Floor getFloor();
 
     /**
+     * Creates a new floor
+     * @return the new floor.
+     */
+    Floor makeNewFloor();
+
+    /**
      * Retrieves the index of the current room within the floor.
      * @return the index of the current room.
      */

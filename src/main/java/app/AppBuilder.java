@@ -266,7 +266,7 @@ public class AppBuilder {
                 viewManagerModel, characterCreationViewModel, roomDefaultViewModel);
 
         final CharacterCreationInputBoundary characterCreationInteractor =
-                new CharacterCreationInteractor(playerDataAccessObject, characterCreationOutputBoundary);
+                new CharacterCreationInteractor(playerDataAccessObject, characterCreationOutputBoundary, roomDataAccessObject);
 
         final CharacterCreationController characterCreationController =
                 new CharacterCreationController(characterCreationInteractor);

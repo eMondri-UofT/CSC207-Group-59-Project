@@ -26,5 +26,5 @@ public interface RoomOutputBoundary {
     /**
      * Prepares the view for returning to the main menu.
      */
-    void prepareMainMenuView();
+    void prepareInventoryView();
 }

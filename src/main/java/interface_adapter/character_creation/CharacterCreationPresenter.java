@@ -24,7 +24,10 @@ public class CharacterCreationPresenter implements CharacterCreationOutputBounda
 
     @Override
     public void prepareSuccessView(CharacterCreationOutputData response) {
-        final RoomDefaultState roomDefaultState = roomDefaultViewModel.getState();
+        final RoomDefaultState roomDefaultState = this.roomDefaultViewModel.getState();
+
+        roomDefaultState.setRoomDescription(response.getRoomDescription());
+        roomDefaultState.setRoomType(response.getRoomType());
         this.roomDefaultViewModel.setState(roomDefaultState);
         this.roomDefaultViewModel.firePropertyChanged();
 

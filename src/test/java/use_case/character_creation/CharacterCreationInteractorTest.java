@@ -1,16 +1,19 @@
 package use_case.character_creation;
 
 import data_access.PlayerDataAccessObject;
+import data_access.RoomDataAccessObject;
 import org.junit.jupiter.api.Test;
+import use_case.room_default.RoomDataAccessInterface;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SignupInteractorTest {
+class CharacterCreationInteractorTest {
 
     @Test
     void successfulAPITest() {
         CharacterCreationInputData inputData = new CharacterCreationInputData("barbarian", "dwarf");
         CharacterCreationDataAccessInterface playerRepository = new PlayerDataAccessObject();
+        RoomDataAccessInterface roomRepository = new RoomDataAccessObject();
 
         // This creates a successPresenter that tests whether the test case is as we expect.
         CharacterCreationOutputBoundary successPresenter = new CharacterCreationOutputBoundary() {
@@ -32,13 +35,14 @@ class SignupInteractorTest {
             }
         };
 
-        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter);
+        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter, roomRepository);
         interactor.execute(inputData);
     }
 
     @Test
     void failureNoSelectedClassTest() {
         CharacterCreationDataAccessInterface playerRepository = new PlayerDataAccessObject();
+        RoomDataAccessInterface roomRepository = new RoomDataAccessObject();
         playerRepository.setPclass(null);
 
         // This creates a successPresenter that tests whether the test case is as we expect.
@@ -60,7 +64,7 @@ class SignupInteractorTest {
             }
         };
 
-        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter);
+        CharacterCreationInputBoundary interactor = new CharacterCreationInteractor(playerRepository, successPresenter, roomRepository);
         interactor.execute();
     }
 }

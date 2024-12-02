@@ -11,9 +11,17 @@ import use_case.room_default.RoomDataAccessInterface;
 public class RoomDataAccessObject implements RoomDataAccessInterface {
     private Floor floor = new Floor();
     private int currentRoomIndex;
+    private int floorIndex = 1;
 
     @Override
     public Floor getFloor() {
+        return floor;
+    }
+
+    @Override
+    public Floor makeNewFloor() {
+        floor = new Floor();
+        floorIndex += 1;
         return floor;
     }
 
