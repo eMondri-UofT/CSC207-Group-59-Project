@@ -10,18 +10,23 @@ import use_case.fall_for_trap.FallForTrapOutputBoundary;
  */
 public class FallForTrapPresenter implements FallForTrapOutputBoundary {
 
+    private final FallForTrapViewModel fallForTrapViewModel;
     private final RoomDefaultViewModel roomDefaultViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public FallForTrapPresenter(ViewManagerModel viewManagerModel,
+                                FallForTrapViewModel fallForTrapViewModel,
                                 RoomDefaultViewModel roomDefaultViewModel) {
         this.viewManagerModel = viewManagerModel;
+        this.fallForTrapViewModel = fallForTrapViewModel;
         this.roomDefaultViewModel = roomDefaultViewModel;
     }
 
     @Override
     public void exitInteraction() {
         final RoomDefaultState roomDefaultState = roomDefaultViewModel.getState();
+        roomDefaultState.setInteractAvailable(false);
+
         this.roomDefaultViewModel.setState(roomDefaultState);
         this.roomDefaultViewModel.firePropertyChanged();
 

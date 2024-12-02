@@ -38,7 +38,7 @@ public class TalkToNpcView extends JPanel implements ActionListener, PropertyCha
     private final JButton continueButton;
     private final JButton exitButton;
     private final JButton buyButton;
-    private final JButton closeButton;
+    private final JButton moveOnButton;
 
     private final JPanel continueButtonPanel;
     private final JPanel merchantButtonPanel;
@@ -69,11 +69,11 @@ public class TalkToNpcView extends JPanel implements ActionListener, PropertyCha
         continueButton = new JButton("Continue");
         exitButton = new JButton("Exit");
         buyButton = new JButton("Buy");
-        closeButton = new JButton("Close");
+        moveOnButton = new JButton("Move On");
 
         continueButtonPanel = createButtonPanel(continueButton);
         merchantButtonPanel = createButtonPanel(exitButton, buyButton);
-        closeButtonPanel = createButtonPanel(closeButton);
+        closeButtonPanel = createButtonPanel(moveOnButton);
 
         addListeners();
 
@@ -136,10 +136,10 @@ public class TalkToNpcView extends JPanel implements ActionListener, PropertyCha
                 }
         );
 
-        closeButton.addActionListener(
+        moveOnButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(closeButton)) {
+                        if (evt.getSource().equals(moveOnButton)) {
                             talkToNpcController.exitInteraction();
                         }
                     }

@@ -57,6 +57,7 @@ public class RoomDefaultPresenter implements RoomOutputBoundary {
 
                     fallForTrapState.setName(trapRoomOutputData.getTrapName());
                     fallForTrapState.setDamage(trapRoomOutputData.getDamage());
+                    fallForTrapState.setHealth(trapRoomOutputData.getHealth());
 
                     this.fallForTrapViewModel.setState(fallForTrapState);
                     this.fallForTrapViewModel.firePropertyChanged();
@@ -105,6 +106,7 @@ public class RoomDefaultPresenter implements RoomOutputBoundary {
     @Override
     public void prepareNextRoomView(RoomOutputData outputData) {
         final RoomDefaultState roomDefaultState = this.roomDefaultViewModel.getState();
+        roomDefaultState.setInteractAvailable(true);
 
         roomDefaultState.setRoomDescription(outputData.getRoomDescription());
         roomDefaultState.setRoomType(outputData.getRoomType());

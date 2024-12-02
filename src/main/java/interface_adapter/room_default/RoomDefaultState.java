@@ -9,6 +9,7 @@ public class RoomDefaultState {
     private String roomDescription = "No description available.";
     private String errorMessage = "";
     private String roomType = "";
+    private boolean interactAvailable = true;
 
     /**
      * Gets the description of the current room.
@@ -81,5 +82,13 @@ public class RoomDefaultState {
      */
     public void setRoomType(String roomType) {
         this.roomType = roomType;
+    }
+
+    public boolean isInteractAvailable() {
+        return interactAvailable;
+    }
+
+    public void setInteractAvailable(boolean interactAvailable) {
+        this.interactAvailable = interactAvailable;
     }
 }

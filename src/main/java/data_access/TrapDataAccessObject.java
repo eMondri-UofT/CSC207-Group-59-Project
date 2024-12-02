@@ -39,11 +39,12 @@ public class TrapDataAccessObject implements FallForTrapDataAccessInterface, Tra
     private static final int PORTABLE_HOLE_DAMAGE = 20;
 
     private final Map<String, Trap> traps = new HashMap<>();
+    private Trap currentTrap;
     private String currentTrapName;
 
     @Override
-    public Trap getCurrentTrap(String name) {
-        return traps.get(name);
+    public Trap getCurrentTrap() {
+        return currentTrap;
     }
 
     @Override
@@ -67,6 +68,7 @@ public class TrapDataAccessObject implements FallForTrapDataAccessInterface, Tra
             final String randomKey = keys[(int) (Math.random() * keys.length)];
             setCurrentTrapName(randomKey);
             trap = traps.remove(randomKey);
+            currentTrap = trap;
         }
         return trap;
     }

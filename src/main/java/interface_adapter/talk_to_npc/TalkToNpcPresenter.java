@@ -43,6 +43,9 @@ public class TalkToNpcPresenter implements TalkToNpcOutputBoundary {
 
     @Override
     public void switchToMerchantView() {
+        final RoomDefaultState roomDefaultState = roomDefaultViewModel.getState();
+        roomDefaultState.setInteractAvailable(false);
+
         final MerchantState merchantState = merchantViewModel.getState();
         this.merchantViewModel.setState(merchantState);
         this.merchantViewModel.firePropertyChanged();
@@ -54,6 +57,8 @@ public class TalkToNpcPresenter implements TalkToNpcOutputBoundary {
     @Override
     public void exitInteraction() {
         final RoomDefaultState roomDefaultState = roomDefaultViewModel.getState();
+        roomDefaultState.setInteractAvailable(false);
+
         this.roomDefaultViewModel.setState(roomDefaultState);
         this.roomDefaultViewModel.firePropertyChanged();
 

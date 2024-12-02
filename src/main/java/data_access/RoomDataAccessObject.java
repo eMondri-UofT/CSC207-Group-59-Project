@@ -19,6 +19,11 @@ public class RoomDataAccessObject implements RoomDataAccessInterface {
     }
 
     @Override
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    @Override
     public Floor makeNewFloor() {
         floor = new Floor();
         floorIndex += 1;

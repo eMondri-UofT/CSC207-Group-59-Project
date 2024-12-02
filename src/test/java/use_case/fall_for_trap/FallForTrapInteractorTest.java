@@ -6,7 +6,6 @@ import data_access.TrapDataAccessObject;
 
 public class FallForTrapInteractorTest {
 
-    @SuppressWarnings("checkstyle:UnusedLocalVariable")
     @Test
     void successTest() {
         final FallForTrapDataAccessInterface trapRepository = new TrapDataAccessObject();

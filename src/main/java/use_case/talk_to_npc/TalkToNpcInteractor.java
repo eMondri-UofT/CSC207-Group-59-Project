@@ -16,9 +16,7 @@ public class TalkToNpcInteractor implements TalkToNpcInputBoundary {
     @Override
     public void moveToNextDialogue(TalkToNpcInputData talkToNpcInputData) {
         int nextDialogueIndex = talkToNpcInputData.getCurrentDialogueIndex();
-        if (talkToNpcInputData.isHasNextDialogue()) {
-            nextDialogueIndex++;
-        }
+        nextDialogueIndex++;
 
         final TalkToNpcOutputData talkToNpcOutputData = new TalkToNpcOutputData(
                 talkToNpcInputData.getName(),

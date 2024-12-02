@@ -3,6 +3,7 @@ package use_case.room_default;
 import java.util.List;
 
 import entity.*;
+import use_case.character_creation.CharacterCreationDataAccessInterface;
 
 /**
  * The Room Default Interactor.
@@ -12,14 +13,17 @@ public class RoomInteractor implements RoomInputBoundary {
     private final RoomDataAccessInterface roomDataAccessObject;
     private final NpcRoomDataAccessInterface npcRoomDataAccessObject;
     private final TrapRoomDataAccessInterface trapRoomDataAccessObject;
+    private final CharacterCreationDataAccessInterface characterCreationDataAccessObject;
 
     public RoomInteractor(RoomOutputBoundary roomPresenter, RoomDataAccessInterface roomDataAccessInterface,
                           NpcRoomDataAccessInterface npcRoomDataAccessInterface,
-                          TrapRoomDataAccessInterface trapRoomDataAccessInterface) {
+                          TrapRoomDataAccessInterface trapRoomDataAccessInterface,
+                          CharacterCreationDataAccessInterface characterCreationDataAccessInterface) {
         this.roomPresenter = roomPresenter;
         this.roomDataAccessObject = roomDataAccessInterface;
         this.npcRoomDataAccessObject = npcRoomDataAccessInterface;
         this.trapRoomDataAccessObject = trapRoomDataAccessInterface;
+        this.characterCreationDataAccessObject = characterCreationDataAccessInterface;
     }
 
     @Override
@@ -51,10 +55,14 @@ public class RoomInteractor implements RoomInputBoundary {
             trapRoomDataAccessObject.setCurrentTrapName(trap.getName());
             trapRoom.setTrap(trap);
 
+            final int health = characterCreationDataAccessObject.getInstance().getHealth();
+            characterCreationDataAccessObject.getInstance().setHealth(health - trap.getDamage());
+
             roomPresenter.prepareSuccessView(new TrapRoomOutputData(
                     trapRoom.getDescription(),
                     trap.getName(),
-                    trap.getDamage()
+                    trap.getDamage(),
+                    characterCreationDataAccessObject.getInstance().getHealth()
             ));
         }
         else {

@@ -110,6 +110,12 @@ public class RoomView extends JPanel implements ActionListener, PropertyChangeLi
 
     private void updateView(RoomDefaultState state) {
         roomDescriptionLabel.setText(state.getRoomDescription());
+        if (state.isInteractAvailable()) {
+            interactButton.setVisible(true);
+        }
+        else {
+            interactButton.setVisible(false);
+        }
     }
 
     public String getViewName() {

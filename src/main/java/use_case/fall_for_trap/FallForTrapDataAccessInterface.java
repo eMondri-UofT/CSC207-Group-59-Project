@@ -9,10 +9,9 @@ public interface FallForTrapDataAccessInterface {
 
     /**
      * Returns the current trap.
-     * @param name the name of the trap
      * @return the current trap
      */
-    Trap getCurrentTrap(String name);
+    Trap getCurrentTrap();
 
     /**
      * Returns the current trap name.

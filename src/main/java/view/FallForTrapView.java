@@ -28,6 +28,7 @@ public class FallForTrapView extends JPanel implements ActionListener, PropertyC
 
     private final JLabel title;
     private final JLabel description;
+    private final JLabel health;
     private final JButton moveOn;
 
     private final JPanel buttonPanel;
@@ -44,6 +45,9 @@ public class FallForTrapView extends JPanel implements ActionListener, PropertyC
 
         description = new JLabel();
         description.setAlignmentX(CENTER_ALIGNMENT);
+
+        health = new JLabel();
+        health.setAlignmentX(CENTER_ALIGNMENT);
 
         moveOn = new JButton("Move On");
 
@@ -66,6 +70,7 @@ public class FallForTrapView extends JPanel implements ActionListener, PropertyC
         this.add(Box.createRigidArea(new Dimension(0, HEIGHT)));
         this.add(title);
         this.add(description);
+        this.add(health);
         this.add(Box.createRigidArea(new Dimension(0, HEIGHT)));
         this.add(buttonPanel);
         this.add(Box.createRigidArea(new Dimension(0, HEIGHT)));
@@ -87,6 +92,7 @@ public class FallForTrapView extends JPanel implements ActionListener, PropertyC
 
         title.setText("You got hit by [" + state.getName() + "]!");
         description.setText(String.format("It dealt %d damage to you.", state.getDamage()));
+        health.setText("Health: " + state.getHealth());
     }
 
     public String getViewName() {
