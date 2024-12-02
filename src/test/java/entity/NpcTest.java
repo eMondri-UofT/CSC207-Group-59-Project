@@ -24,7 +24,8 @@ public class NpcTest {
                 "Don't touch that! Oh, wait... never mind.",
                 "If this works, I might finally get some respect around here."
         );
-        npc = new Npc("ALCHEMIST", "Medium humanoid (Artificer), any alignment", dialogues);
+        npc = new Npc("ALCHEMIST", "Medium humanoid (Artificer), any alignment",
+                dialogues, false);
     }
 
     @Test

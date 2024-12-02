@@ -25,6 +25,8 @@ public class Player {
     private int maxHealth;
     private int healthRegeneration;
 
+    private int gold;
+
 
     public Player() {
         this.inventory = new Inventory();     //assume Base information for all race, add value if race changed.
@@ -35,6 +37,7 @@ public class Player {
         this.equippedItems.put("Armor", null);
         this.equippedItems.put("Weapon", null);
         this.equippedItems.put("Buff", null);
+        this.gold = 150;
     }
 
     /**
@@ -258,6 +261,14 @@ public class Player {
     public void setTotalDamage(int totalDamage) { this.totalDamage = totalDamage; }
 
     /**
+     * Gett and setter for player gold.
+     */
+    public int getGold() { return gold; }
+    public void setGold(int gold) {
+        this.gold = Math.max(0, gold);
+    }
+
+    /**
      * Increasers for Armor/Damage
      * @param amount how much armor/damage has increased by
      */
@@ -269,5 +280,20 @@ public class Player {
     public void increaseDamage(int amount) {
         this.setTotalDamage(this.getTotalDamage() + amount);
         System.out.println("Attack power increased by " + amount + ". New attack power: " + this.getTotalDamage());
+    }
+
+    /**
+     * Add and subtract gold
+     */
+    public boolean subtractGold(int amount) {
+        if (gold >= amount) {
+            gold -= amount;
+            return true;
+        }
+        return false; // Not enough gold
+    }
+
+    public void addGold(int amount) {
+        this.gold += amount;
     }
 }

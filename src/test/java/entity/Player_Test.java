@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test suite for the Player class.
  */
-public class Player_Test {
+class PlayerTest {
 
     private Player player;
 
@@ -126,6 +126,36 @@ public class Player_Test {
 
         inventory.removeItem("Healing Potion");
         assertNull(inventory.getItem("Healing Potion"), "Item should be removed from inventory");
+    }
+
+    @Test
+    public void testAddGold() {
+        player.setGold(100); // Reset gold
+        player.addGold(50);
+        assertEquals(150, player.getGold(), "Gold should increase to 150 after adding 50");
+
+        player.addGold(0);
+        assertEquals(150, player.getGold(), "Adding 0 gold should not change the total");
+
+        player.addGold(100);
+        assertEquals(250, player.getGold(), "Gold should increase to 250 after adding 100");
+    }
+
+    @Test
+    public void testSubtractGold() {
+        player.setGold(100); // Reset gold
+
+        boolean success = player.subtractGold(50);
+        assertTrue(success, "Deduction should succeed when enough gold is available");
+        assertEquals(50, player.getGold(), "Gold should decrease to 50 after deducting 50");
+
+        success = player.subtractGold(60);
+        assertFalse(success, "Deduction should fail when not enough gold is available");
+        assertEquals(50, player.getGold(), "Gold should remain at 50 after a failed deduction");
+
+        success = player.subtractGold(50);
+        assertTrue(success, "Deduction should succeed when exactly enough gold is available");
+        assertEquals(0, player.getGold(), "Gold should be 0 after deducting all available gold");
     }
 }
 

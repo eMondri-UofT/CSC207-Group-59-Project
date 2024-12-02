@@ -7,6 +7,7 @@ public class Item {
     private final String name;
     private final String category;
     private final String rarity;
+    private final int price;
 
     /**
      * Constructor for an Item.
@@ -19,6 +20,7 @@ public class Item {
         this.name = name;
         this.category = category;
         this.rarity = rarity;
+        this.price = determinePrice(rarity);
     }
 
     /**
@@ -98,5 +100,34 @@ public class Item {
      */
     public String getRarity() {
         return rarity;
+    }
+
+    /**
+     * Gets the price of the item.
+     * @return the item's price
+     */
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * Determines the price based on the rarity of the item.
+     *
+     * @param rarity the rarity of the item
+     * @return the price of the item
+     */
+    public int determinePrice(String rarity) {
+        switch (rarity) {
+            case "Common":
+                return 10;
+            case "Rare":
+                return 25;
+            case "Epic":
+                return 50;
+            case "Legendary":
+                return 100;
+            default:
+                throw new IllegalArgumentException("Unknown rarity: " + rarity);
+        }
     }
 }

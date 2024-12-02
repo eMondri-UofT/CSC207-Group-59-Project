@@ -9,12 +9,14 @@ public class Npc {
     private String name;
     private String description;
     private List<String> dialogue;
+    private boolean isMerchant;
     private int currentDialogueIndex;
 
-    public Npc(String name, String description, List<String> dialogue) {
+    public Npc(String name, String description, List<String> dialogue, boolean isMerchant) {
         this.name = name;
         this.description = description;
         this.dialogue = dialogue;
+        this.isMerchant = isMerchant;
         this.setCurrentDialogueIndex(0);
     }
 

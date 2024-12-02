@@ -10,4 +10,6 @@ public interface MerchantInputBoundary {
      * @param merchantInputData input data
      */
     void execute(MerchantInputData merchantInputData);
+
+    void buy(MerchantInputData merchantInputData);
 }

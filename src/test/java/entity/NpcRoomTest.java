@@ -30,7 +30,7 @@ public class NpcRoomTest {
                         "My best ideas come when I'm not even trying.",
                         "Don't touch that! Oh, wait... never mind.",
                         "If this works, I might finally get some respect around here."
-                ));
+                ), false);
         npcRoom.setNpc(npc);
         assertEquals(npc, npcRoom.getNpc());
     }

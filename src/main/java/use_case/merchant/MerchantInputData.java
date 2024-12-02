@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MerchantInputData {
-    private final Map<String, List<Item>> items;
+    private Map<String, List<Item>> items;
+    private String itemName;
 
     /**
      * Constructor for MerchantInputData.
@@ -17,6 +18,10 @@ public class MerchantInputData {
         this.items = items;
     }
 
+    public MerchantInputData(String itemName) {
+        this.itemName = itemName;
+    }
+
     /**
      * Get the map of item categories to their respective lists of items.
      *
@@ -24,6 +29,10 @@ public class MerchantInputData {
      */
     public Map<String, List<Item>> getItems() {
         return items;
+    }
+
+    public String getItemName() {
+        return itemName;
     }
 
 }
