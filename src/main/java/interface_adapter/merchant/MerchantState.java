@@ -54,5 +54,14 @@ public class MerchantState {
         }
     }
 
+    /**
+     * Get the player's current gold.
+     *
+     * @return The player's gold.
+     */
+    public int getGold() {
+        return Player.getInstance().getGold();
+    }
+
 
 }
