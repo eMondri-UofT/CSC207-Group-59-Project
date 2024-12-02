@@ -48,7 +48,7 @@ public class MerchantInteractorTest {
         itemsForSale.put("Buff", Collections.singletonList(healthPotion));
 
         Merchant merchant = new Merchant("Test Merchant", "A friendly merchant",
-                Collections.singletonList("Welcome to my shop!"), itemsForSale);
+                Collections.singletonList("Welcome to my shop!"), itemsForSale, true);
 
         npcRepository.setCurrentNpc(merchant);
 
@@ -65,7 +65,7 @@ public class MerchantInteractorTest {
         itemsForSale.put("Buff", new ArrayList<>(List.of(healthPotion)));
 
         Merchant merchant = new Merchant("Test Merchant", "A friendly merchant",
-                Collections.singletonList("Welcome to my shop!"), itemsForSale);
+                Collections.singletonList("Welcome to my shop!"), itemsForSale, true);
 
         npcRepository.setCurrentNpc(merchant);
 
@@ -90,7 +90,7 @@ public class MerchantInteractorTest {
         itemsForSale.put("Buff", Collections.singletonList(healthPotion));
 
         Merchant merchant = new Merchant("Test Merchant", "A friendly merchant",
-                Collections.singletonList("Welcome to my shop!"), itemsForSale);
+                Collections.singletonList("Welcome to my shop!"), itemsForSale, true);
 
         npcRepository.setCurrentNpc(merchant);
 
@@ -110,7 +110,7 @@ public class MerchantInteractorTest {
         // Set up a merchant with items for sale
         Map<String, List<Item>> itemsForSale = new HashMap<>();
         Merchant merchant = new Merchant("Test Merchant", "A friendly merchant",
-                Collections.singletonList("Welcome to my shop!"), itemsForSale);
+                Collections.singletonList("Welcome to my shop!"), itemsForSale, true);
 
         npcRepository.setCurrentNpc(merchant);
 

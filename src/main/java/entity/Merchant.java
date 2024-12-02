@@ -17,8 +17,9 @@ public class Merchant extends Npc {
      * @param dialogue    The dialogue of the merchant.
      * @param itemsForSale The items the merchant sells (name and price).
      */
-    public Merchant(String name, String description, List<String> dialogue, Map<String, List<Item>> itemsForSale) {
-        super(name, description, dialogue);
+    public Merchant(String name, String description, List<String> dialogue, Map<String,
+            List<Item>> itemsForSale, boolean isMerchant) {
+        super(name, description, dialogue, isMerchant);
         this.itemsForSale = itemsForSale;
     }
 

@@ -62,6 +62,4 @@ public class MerchantState {
     public int getGold() {
         return Player.getInstance().getGold();
     }
-
-
 }

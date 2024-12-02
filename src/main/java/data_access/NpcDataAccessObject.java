@@ -31,8 +31,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
     public Npc generateRandomNpc() {
         if (npcs.isEmpty()) {
             currentNpc = null;
-        }
-        else {
+        } else {
             final String[] keys = npcs.keySet().toArray(new String[0]);
             final String randomKey = keys[(int) (Math.random() * keys.length)];
             currentNpc = npcs.remove(randomKey);
@@ -55,7 +54,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "My best ideas come when I'm not even trying.",
                         "Don't touch that! Oh, wait... never mind.",
                         "If this works, I might finally get some respect around here."
-                )));
+                ), false));
 
         npcs.put("BEASTMASTER", new Npc("BEASTMASTER", "Medium humanoid (Ranger), any alignment",
                 Arrays.asList(
@@ -65,7 +64,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "This scar? Got it from a boar. He's my friend now.",
                         "I don't tame them; I just listen.",
                         "There's nothing like the quiet of the wild."
-                )));
+                ), false));
 
         npcs.put("ARCANE WARRIOR", new Npc("ARCANE WARRIOR", "Medium humanoid (Fighter/Sorcerer), any alignment",
                 Arrays.asList(
@@ -76,7 +75,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "I've learned that power means responsibility, not glory.",
                         "I'll admit it - I've made mistakes, big ones.",
                         "At the end of the day, I just want to protect what matters."
-                )));
+                ), false));
 
         npcs.put("ARCHPRIEST", new Npc("ARCHPRIEST", "Medium humanoid (Cleric), usually any good alignment",
                 Arrays.asList(
@@ -85,7 +84,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "Prayer isn't just words - it's action too.",
                         "The world's pain doesn't disappear overnight.",
                         "May your path be clear, even when it feels impossible."
-                )));
+                ), false));
 
         npcs.put("BATTLE SHAMAN", new Npc("BATTLE SHAMAN", "Medium humanoid (Barbarian/Druid), any alignment",
                 Arrays.asList(
@@ -95,7 +94,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "The wild doesn't forgive carelessness.",
                         "Each strike I make is guided by something greater.",
                         "The land remembers. It always does."
-                )));
+                ), false));
 
         npcs.put("BODYGUARD", new Npc("BODYGUARD", "Medium humanoid (Fighter/Guardian), any alignment",
                 Arrays.asList(
@@ -105,7 +104,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "I've seen things I'll never forget. That's part of the deal.",
                         "People put their lives in my hands. I don't take that lightly.",
                         "I don't talk much. My actions say enough."
-                )));
+                ), false));
 
         npcs.put("CANNONEER", new Npc("CANNONEER", "Medium humanoid, any alignment",
                 Arrays.asList(
@@ -116,7 +115,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "Sometimes I miss the quiet before battle.",
                         "You'd be surprised how heavy these things are.",
                         "No matter what, I always fire with purpose."
-                )));
+                ), false));
 
         npcs.put("GUNSLINGER", new Npc("GUNSLINGER", "Medium humanoid, usually non-lawful alignment",
                 Arrays.asList(
@@ -127,7 +126,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "People think this life is glamorous - it's not.",
                         "You don't get used to the sound of a gun. Not really.",
                         "I'm fast, but sometimes fast isn't enough."
-                )));
+                ), false));
 
         npcs.put("MYSTIC PUGILIST", new Npc("MYSTIC PUGILIST", "Medium humanoid (Monk), any alignment",
                 Arrays.asList(
@@ -138,7 +137,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "Sometimes, a single strike says more than words.",
                         "I don't fight for glory - I fight for understanding.",
                         "Each step I take is part of the journey."
-                )));
+                ), false));
 
         npcs.put("SAMURAI", new Npc("SAMURAI", "Medium humanoid (Fighter), any alignment",
                 Arrays.asList(
@@ -149,7 +148,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "Every battle teaches something new.",
                         "The way of the sword is endless.",
                         "I strive for perfection, though I know I'll never reach it."
-                )));
+                ), false));
 
         npcs.put("TACTICIAN", new Npc("TACTICIAN", "Medium humanoid (Rogue/Guide), any alignment",
                 Arrays.asList(
@@ -160,7 +159,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "The smallest detail can turn the tide of battle.",
                         "I don't believe in luck - just preparation.",
                         "Watch closely. You might learn something."
-                )));
+                ), false));
 
         npcs.put("SEEKER", new Npc("SEEKER", "Medium humanoid (Ranger), any alignment",
                 Arrays.asList(
@@ -171,7 +170,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "I don't just hunt - I listen.",
                         "Some trails are harder to follow than others.",
                         "I'll find what I'm looking for, no matter how long it takes."
-                )));
+                ), false));
 
         npcs.put("SWORDMAGE", new Npc("SWORDMAGE", "Medium humanoid (Fighter/Wizard), any alignment",
                 Arrays.asList(
@@ -182,7 +181,7 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "A perfect spell is as beautiful as a perfect blade.",
                         "Magic sharpens my edge in more ways than one.",
                         "This is more than a craft - it's who I am."
-                )));
+                ), false));
 
         npcs.put("TEMPLAR", new Npc("TEMPLAR", "Medium humanoid (Paladin), usually non-evil alignment",
                 Arrays.asList(
@@ -193,6 +192,16 @@ public class NpcDataAccessObject implements TalkToNpcDataAccessInterface, NpcRoo
                         "The righteous path isn't always easy to walk.",
                         "Every step forward is a step closer to peace.",
                         "I will not falter, no matter what stands in my way."
-                )));
+                ), false));
+
+        npcs.put("MERCHANT", new Npc("MERCHANT", "Medium humanoid (Merchant), any alignment",
+                Arrays.asList(
+                "Welcome to my shop! Have a look at my wares.",
+                "Everything you see here is of the finest quality.",
+                "Running low on supplies? I've got what you need.",
+                "Need something special? Let's see if I can help.",
+                "No haggling. My prices are already fair."
+        ), true));
+
     }
 }
